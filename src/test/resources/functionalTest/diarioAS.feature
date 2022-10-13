@@ -12,7 +12,7 @@ Feature: Diario AS proof of concept for Prisa
     And The Atletico de Madrid news are displayed
 
   @Case02 @Home
-  Scenario: Return to home from a soccer page
+  Scenario: Return to home from a football page
     When The user access Atletico de Madrid within the Futbol section
     And The user clicks on the banner AS logo
     Then The user is redirected to the home page

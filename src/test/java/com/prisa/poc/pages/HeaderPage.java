@@ -1,12 +1,10 @@
 package com.prisa.poc.pages;
 
-import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-@Slf4j
 public class HeaderPage extends AbstractPage {
 
     /** Locators */
@@ -45,6 +43,7 @@ public class HeaderPage extends AbstractPage {
         optionFormulaOne.click();
     }
 
-    public void clickHeaderLogo() { logoAS.click(); }
-
+    public void clickHeaderLogo() {
+        logoAS.click();
+    }
 }

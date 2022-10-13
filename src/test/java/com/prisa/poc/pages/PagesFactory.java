@@ -1,6 +1,9 @@
 package com.prisa.poc.pages;
 
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 
 public class PagesFactory {
 
@@ -31,16 +34,20 @@ public class PagesFactory {
         return pagesFactories;
     }
 
-    public WebDriver getDriver() {
-        return driver;
+    public HomePage getHomePage() { return homePage; }
+
+    public NewsPage getNewsPage() { return newsPage; }
+
+    public HeaderPage getHeaderPage() { return headerPage; }
+
+    public WebDriver getDriver() { return driver; }
+
+    public String getUrl() { return driver.getCurrentUrl(); }
+
+    public void waitForPageLoad() {
+        try {
+            WebElement elem = getDriver().findElement(By.id("pbnetVideo"));
+            new WebDriverWait(getDriver(), Duration.ofSeconds(25)).until(ExpectedConditions.visibilityOf(elem));
+        } catch (NoSuchElementException e) {}
     }
-
-    public HomePage getHomePage() {
-        return homePage;
-    }
-
-    public NewsPage getNewsPage() {return newsPage; }
-
-    public HeaderPage getHeaderPage() {return headerPage; }
-
 }

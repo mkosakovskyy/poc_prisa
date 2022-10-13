@@ -1,7 +1,7 @@
 package com.prisa.poc.pages;
 
-import java.time.temporal.ChronoUnit;
 import com.prisa.poc.utils.MyFluentWait;
+import java.time.temporal.ChronoUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
@@ -11,7 +11,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 
 @Slf4j
@@ -37,13 +36,9 @@ public abstract class AbstractPage {
 
     protected WebDriver getDriver() { return driver; }
 
-    protected Wait<WebDriver> getWait() {
-        return wait;
-    }
+    protected Wait<WebDriver> getWait() { return wait; }
 
-    protected void setWait(Wait<WebDriver> wait) {
-        this.wait = wait;
-    }
+    protected void setWait(Wait<WebDriver> wait) { this.wait = wait; }
 
     /** Is Methods */
 
@@ -58,7 +53,7 @@ public abstract class AbstractPage {
     }
 
     protected boolean isElementPresent(WebElement elem) {
-        boolean isPresent = false;
+        boolean isPresent;
         try {
             isPresent = elem.isDisplayed();
         } catch (NoSuchElementException e) {
@@ -70,9 +65,8 @@ public abstract class AbstractPage {
     /** Navigation Methods */
 
     public void navigateTo(String url) {
-        WebDriver driver = getDriver();
         try {
-            driver.navigate().to(url);
+            getDriver().navigate().to(url);
         } catch (java.lang.Exception e) {
             if (e instanceof TimeoutException) {
                 log.info("Timeout loading home page");
@@ -94,16 +88,8 @@ public abstract class AbstractPage {
     }
 
     public void switchWindow() {
-        WebDriver driver = getDriver();
-        for(String winHandle : driver.getWindowHandles()){
-            driver.switchTo().window(winHandle);
+        for(String winHandle : getDriver().getWindowHandles()){
+            getDriver().switchTo().window(winHandle);
         }
     }
-
-    /** Wait Methods */
-
-    protected void waitForPageLoad(WebElement elem) {
-        wait.until(ExpectedConditions.visibilityOf(elem));
-    }
-
 }

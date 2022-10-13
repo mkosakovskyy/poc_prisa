@@ -6,31 +6,28 @@ public class Flags {
 
     private static final String BROWSER = "browser";
     private static final String HEADLESS = "headless";
-    private final String browser = System.getProperty(BROWSER);
-    private final boolean isHeadless = this.parseBoolean(System.getProperty(HEADLESS));
+    private final String browser = System.getProperty("browser");
+    private final boolean isHeadless = this.parseBoolean(System.getProperty("headless"));
     private static Flags instance;
 
     /** Methods */
 
-    private boolean parseBoolean(String string){
-        String result = (string == null) ? "false" : string;
+    private boolean parseBoolean(String string) {
+        String result = string == null ? "false" : string;
         result = result.toLowerCase().trim();
         return (result.equals("true") || result.equals("false")) && Boolean.parseBoolean(result);
     }
 
-    public static Flags getInstance(){
-        if (instance == null){
-            instance = new Flags();
-        }
+    public static Flags getInstance() {
+        if (instance == null) { instance = new Flags(); }
         return instance;
     }
 
-    public boolean isHeadless(){
+    public boolean isHeadless() {
         return this.isHeadless;
     }
 
-    public String getBrowser(){
+    public String getBrowser() {
         return this.browser;
     }
-
 }
