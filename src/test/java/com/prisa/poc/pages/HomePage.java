@@ -40,7 +40,7 @@ public class HomePage extends AbstractPage {
     }
 
     public void clickAcceptCookies() {
-        new WebDriverWait(getDriver(), Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(logoAS));
+        new WebDriverWait(getDriver(), Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(logoAS));
         if (isElementPresent(btnAcceptCookies)) {
             btnAcceptCookies.click();
         }
