@@ -6,7 +6,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.commons.lang.StringUtils;
+import org.codehaus.plexus.util.StringUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -31,14 +31,11 @@ public class Hooks {
     public void setUp() {
         String browser = Flags.getInstance().getBrowser();
         if (StringUtils.isBlank(browser)) browser = "chrome";
-        // boolean isHeadless = Flags.getInstance().isHeadless();
         switch(browser) {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions optionsFirefox = new FirefoxOptions();
-                // if (isHeadless) {
                 optionsFirefox.addArguments("--headless");
-                // }
                 driver = new FirefoxDriver(optionsFirefox);
                 break;
             case "edge":
@@ -52,10 +49,10 @@ public class Hooks {
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions optionsChrome = new ChromeOptions();
-                // if (isHeadless) {
-                optionsChrome.addArguments("--no-sandbox", "--disable-dev-shm-usage", "--headless");
-                optionsChrome.addArguments("window-size=1280,720");
-                // }
+                optionsChrome.addArguments("--headless");
+                optionsChrome.addArguments("--no-sandbox");
+                optionsChrome.addArguments("--disable-dev-shm-usage");
+                //optionsChrome.addArguments("window-size=1280,720");
                 driver = new ChromeDriver(optionsChrome);
         }
         driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
@@ -68,12 +65,10 @@ public class Hooks {
     @After
     public void tearDown(Scenario scenario) {
         try {
-            // if (scenario.isFailed()) {
             final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
             long time = new Date().getTime();
             String outputName = "screenshot_" + time + ".png";
             scenario.attach(screenshot, "image/png", outputName);
-            // }
         } catch (WebDriverException somePlatformsDontSupportScreenshots) {
             System.err.println(somePlatformsDontSupportScreenshots.getMessage());
         }

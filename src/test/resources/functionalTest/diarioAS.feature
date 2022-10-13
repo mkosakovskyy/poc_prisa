@@ -31,4 +31,3 @@ Feature: Diario AS proof of concept for Prisa
     And The Formula One league advertisement elements are displayed
       | gtp_diarioas_19753-MPU1 |
       | gtp_diarioas_19753-MPU2 |
-      | gtp_diarioas_19753-LDB2 |
