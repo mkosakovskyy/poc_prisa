@@ -30,4 +30,3 @@ Feature: Diario AS proof of concept for Prisa
     Then The Formula One league page is correct
     And The Formula One league advertisement elements are displayed
       | gtp_diarioas_19753-MPU1 |
-      | gtp_diarioas_19753-MPU2 |
