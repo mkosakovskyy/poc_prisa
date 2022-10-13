@@ -47,7 +47,7 @@ public class PagesFactory {
     public void waitForPageLoad() {
         try {
             WebElement elem = getDriver().findElement(By.id("pbnetVideo"));
-            new WebDriverWait(getDriver(), Duration.ofSeconds(60)).until(ExpectedConditions.visibilityOf(elem));
+            new WebDriverWait(getDriver(), Duration.ofSeconds(15)).until(ExpectedConditions.visibilityOf(elem));
         } catch (NoSuchElementException e) {}
     }
 }

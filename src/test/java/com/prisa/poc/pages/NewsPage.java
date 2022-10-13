@@ -43,7 +43,7 @@ public class NewsPage extends AbstractPage {
     public void waitForAdvertisements() {
         try {
             WebElement elem = getDriver().findElement(By.id("gtp_diarioas_19753-MPU1"));
-            new WebDriverWait(getDriver(), Duration.ofSeconds(60)).until(ExpectedConditions.visibilityOf(elem));
+            new WebDriverWait(getDriver(), Duration.ofSeconds(25)).until(ExpectedConditions.visibilityOf(elem));
         } catch (NoSuchElementException e) {}
     }
 
