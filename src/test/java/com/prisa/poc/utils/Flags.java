@@ -23,11 +23,5 @@ public class Flags {
         return instance;
     }
 
-    public boolean isHeadless() {
-        return this.isHeadless;
-    }
-
-    public String getBrowser() {
-        return this.browser;
-    }
+    public String getBrowser() { return this.browser; }
 }

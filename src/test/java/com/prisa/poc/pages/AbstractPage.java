@@ -3,12 +3,8 @@ package com.prisa.poc.pages;
 import com.prisa.poc.utils.MyFluentWait;
 import java.time.temporal.ChronoUnit;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.ScriptTimeoutException;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.Wait;
@@ -91,5 +87,12 @@ public abstract class AbstractPage {
         for(String winHandle : getDriver().getWindowHandles()){
             getDriver().switchTo().window(winHandle);
         }
+    }
+
+    public static void dragAndDropElement(WebDriver driver, By locator, int xOffset, int yOffset){
+        WebElement slider = driver.findElement(locator);
+        Actions move = new Actions(driver);
+        Action action = (Action) move.dragAndDropBy(slider, xOffset, yOffset).build();
+        action.perform();
     }
 }
