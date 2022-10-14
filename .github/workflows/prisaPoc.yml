@@ -18,6 +18,7 @@ jobs:
         run: mvn -B package --file pom.xml -Dbrowser=chrome
 
   Prueba:
+    runs-on: ubuntu-latest
     steps:
       - name: Generate artifact for Pdf
         uses: actions/upload-artifact@v2
