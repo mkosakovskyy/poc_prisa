@@ -97,7 +97,7 @@ jobs:
         uses: Sibz/github-status-action@v1
         with:
           authToken: ${{secrets.GITHUB_TOKEN}}
-          context: 'Allure - POC de Prisa'
+          context: 'Allure Reports'
           description: 'Pulsa "Details" para acceder al reporte'
           state: 'success'
           sha: ${{github.event.pull_request.head.sha || github.sha}}
