@@ -19,6 +19,7 @@ jobs:
 
   Prueba:
     needs: Chrome
+    runs-on: ubuntu-latest
     steps:
       - name: Generate artifact for Pdf
         uses: actions/upload-artifact@v2
