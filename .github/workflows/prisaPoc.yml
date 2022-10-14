@@ -102,5 +102,5 @@ jobs:
           context: 'Test report'
           description: 'Passed'
           state: 'success'
-          sha: ${{github.event.pull_request.head.sha}}
+          sha: ${{github.event.pull_request.head.sha || github.sha}}
           target_url: https://mkosakovskyy.github.io/poc_prisa/${{ github.run_number }}

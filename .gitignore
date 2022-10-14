@@ -58,3 +58,7 @@ out/
 .~lock.*.odt#
 
 *derby.log
+
+# Cucumber
+cucumber-reporting
+allure-results
