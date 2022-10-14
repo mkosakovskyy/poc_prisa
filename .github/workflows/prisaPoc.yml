@@ -21,29 +21,35 @@ jobs:
         uses: actions/upload-artifact@v2
         if: always()
         with:
-          name: report_pdf
-          path: ./reports/pdf
+          name: extent_pdf
+          path: ./extent-reports/pdf
           
       - name: Generate artifact for Json
         uses: actions/upload-artifact@v2
         if: always()
         with:
-          name: report_json
-          path: ./reports/json
+          name: extent_json
+          path: ./extent-reports/json
           
       - name: Generate artifact for Html
         uses: actions/upload-artifact@v2
         if: always()
         with:
-          name: report_html
-          path: ./reports/html
+          name: extent_index
+          path: ./extent-reports/html
           
       - name: Generate artifact for Spark
         uses: actions/upload-artifact@v2
         if: always()
         with:
-          name: report_spark
-          path: ./reports/spark
+          name: extent_html
+          path: ./extent-reports/spark
+
+
+
+
+
+
 
       #- name: Deploy report index to GitHub Page
         #uses: JamesIves/github-pages-deploy-action@4.1.5
@@ -86,6 +92,7 @@ jobs:
         with:
           authToken: ${{secrets.GITHUB_TOKEN}}
           context: 'Test report'
+          description: 'Passed'
           state: 'success'
-          sha: ${{ github.event.pull_request.head.sha }}
-          target_url: simple-elf.github.io/github-allure-history/${{ github.run_number }}
+          sha: ${{github.event.pull_request.head.sha}}
+          target_url: https://mkosakovskyy.github.io/poc_prisa/${{ github.run_number }}
