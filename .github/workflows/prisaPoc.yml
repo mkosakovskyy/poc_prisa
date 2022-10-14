@@ -16,14 +16,16 @@ jobs:
           
       - name: Run Selenium with Maven
         run: mvn -B package --file pom.xml -Dbrowser=chrome
-        
+
+  Prueba:
+    steps:
       - name: Generate artifact for Pdf
         uses: actions/upload-artifact@v2
         if: always()
         with:
           name: extent_pdf
           path: ./extent-reports/pdf
-          
+
       - name: Generate artifact for Json
         uses: actions/upload-artifact@v2
         if: always()
@@ -99,8 +101,8 @@ jobs:
         uses: Sibz/github-status-action@v1
         with:
           authToken: ${{secrets.GITHUB_TOKEN}}
-          context: 'Test report'
-          description: 'Passed'
+          context: 'Allure Report'
+          description: 'Pulsa "Details" para acceder al reporte'
           state: 'success'
           sha: ${{github.event.pull_request.head.sha || github.sha}}
           target_url: https://mkosakovskyy.github.io/poc_prisa/${{ github.run_number }}
