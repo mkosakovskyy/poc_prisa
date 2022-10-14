@@ -17,46 +17,42 @@ jobs:
       - name: Run Selenium with Maven
         run: mvn -B package --file pom.xml -Dbrowser=chrome
 
-  Prueba:
-    needs: Chrome
-    runs-on: ubuntu-latest
-    steps:
-      - name: Generate artifact for Pdf
+      - name: Generate artifact for ExtentReports PDF
         uses: actions/upload-artifact@v2
         if: always()
         with:
           name: extent_pdf
           path: ./extent-reports/pdf
 
-      - name: Generate artifact for Json
+      - name: Generate artifact for ExtentReports JSON
         uses: actions/upload-artifact@v2
         if: always()
         with:
           name: extent_json
           path: ./extent-reports/json
           
-      - name: Generate artifact for Html
+      - name: Generate artifact for ExtentReports Advanced HTML
         uses: actions/upload-artifact@v2
         if: always()
         with:
           name: extent_index
           path: ./extent-reports/html
           
-      - name: Generate artifact for Spark
+      - name: Generate artifact for ExtentReports Spark HTML
         uses: actions/upload-artifact@v2
         if: always()
         with:
           name: extent_html
           path: ./extent-reports/spark
 
-      - name: Generate artifact for Cucumber html
+      - name: Generate artifact for Cucumber Basic HTML
         uses: actions/upload-artifact@v2
         if: always()
         with:
           name: cucumber_html
           path: ./cucumber-reporting/html
 
-      - name: Generate artifact for Cucumber html report
+      - name: Generate artifact for Cucumber HTML Reports
         uses: actions/upload-artifact@v2
         if: always()
         with:
@@ -69,7 +65,7 @@ jobs:
           #branch: gh-pages
           #folder: ./reports/spark
 
-      - name: Get Allure history
+      - name: Get Allure Reports history
         uses: actions/checkout@v2
         if: always()
         continue-on-error: true
@@ -77,7 +73,7 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
-      - name: Test marketplace action
+      - name: Get Allure Reports results
         uses: simple-elf/allure-report-action@master
         if: always()
         id: allure-report
@@ -88,8 +84,7 @@ jobs:
           allure_history: allure-history
           keep_reports: 10
 
-
-      - name: Deploy report to Github Pages
+      - name: Prepare Allure Reports deploy to Github Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v2
         env:
@@ -98,7 +93,7 @@ jobs:
           PUBLISH_DIR: allure-history
 
 
-      - name: Post the link to the report
+      - name: Post the Allure link in the commit status
         if: always()
         uses: Sibz/github-status-action@v1
         with:
