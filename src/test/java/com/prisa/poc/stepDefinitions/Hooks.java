@@ -2,6 +2,7 @@ package com.prisa.poc.stepDefinitions;
 
 import com.prisa.poc.pages.PagesFactory;
 import com.prisa.poc.utils.Flags;
+import com.prisa.poc.utils.ScreenRecorderUtil;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -25,7 +26,7 @@ public class Hooks {
     /** Delete all cookies at the start of each scenario to avoid shared state between tests */
     @Before
     @SuppressWarnings("deprecation")
-    public void setUp() {
+    public void setUp() throws Exception {
         String browser = Flags.getInstance().getBrowser();
         if (StringUtils.isBlank(browser)) browser = "chrome";
         switch (browser) {
@@ -57,11 +58,13 @@ public class Hooks {
         Dimension d = new Dimension(1920, 1200);
         driver.manage().window().setSize(d);
         PagesFactory.start(driver);
+
+        ScreenRecorderUtil.startRecord("PRUEBA");
     }
 
     /** Embed a screenshot in test report if test is marked as failed */
     @After
-    public void tearDown(Scenario scenario) {
+    public void tearDown(Scenario scenario) throws Exception {
         try {
             final byte[] screenByte = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenByte, "image/png", scenario.getName());
@@ -69,6 +72,8 @@ public class Hooks {
             System.err.println(somePlatformsDontSupportScreenshots.getMessage());
         }
         driver.quit();
+
+        ScreenRecorderUtil.stopRecord();
     }
 
     /** @AfterStep
