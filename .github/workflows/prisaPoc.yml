@@ -65,7 +65,7 @@ jobs:
           #branch: gh-pages
           #folder: ./reports/spark
 
-      - name: Get Allure Reports history
+      - name: Get AllureReports history
         uses: actions/checkout@v2
         if: always()
         continue-on-error: true
@@ -73,7 +73,7 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
-      - name: Get Allure Reports results
+      - name: Get AllureReports results
         uses: simple-elf/allure-report-action@master
         if: always()
         id: allure-report
@@ -84,14 +84,13 @@ jobs:
           allure_history: allure-history
           keep_reports: 10
 
-      - name: Prepare Allure Reports deploy to Github Pages
+      - name: Prepare AllureReports deploy to Github Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v2
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
-
 
       - name: Post the Allure link in the commit status
         if: always()
