@@ -59,8 +59,10 @@ jobs:
           name: cucumber_html_report
           path: ./cucumber-reporting/cucumber-html-reports
 
-      - name: Deploy report index to GitHub Page
-        uses: JamesIves/github-pages-deploy-action@4.1.5
-        with:
-          branch: gh-pages
-          folder: ./extent-reports/html
+      - name: Prepare AllureReports deploy to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./extent-reports/html
