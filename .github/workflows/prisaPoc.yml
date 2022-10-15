@@ -65,14 +65,6 @@ jobs:
           #branch: gh-pages
           #folder: ./reports/spark
 
-      - name: Get AllureReports history
-        uses: actions/checkout@v2
-        if: always()
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages
-
       - name: Get AllureReports results
         uses: simple-elf/allure-report-action@master
         if: always()
