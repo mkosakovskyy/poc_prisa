@@ -92,8 +92,6 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
 
-
-
       - name: Post the Allure link in the commit status
         if: always()
         uses: Sibz/github-status-action@v1
@@ -103,5 +101,4 @@ jobs:
           description: 'Pulsa "Details" para acceder al reporte'
           state: 'success'
           sha: ${{github.event.pull_request.head.sha || github.sha}}
-          target_url: https://mkosakovskyy.github.io/poc_prisa/${{ github.run_number }}
-
+          target_url: https://mkosakovskyy.github.io/poc_prisa/${{github.run_number}}
