@@ -65,24 +65,7 @@ jobs:
           #branch: gh-pages
           #folder: ./reports/spark
 
-      - name: Get AllureReports history
-        uses: actions/checkout@v3
-        if: always()
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages
 
-      - name: Get AllureReports results
-        uses: simple-elf/allure-report-action@master
-        if: always()
-        id: allure-report
-        with:
-          allure_results: ./allure-results
-          gh_pages: gh-pages
-          allure_report: allure-report
-          allure_history: allure-history
-          keep_reports: 10
 
       - name: Prepare AllureReports deploy to Github Pages
         if: always()
@@ -90,15 +73,5 @@ jobs:
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: allure-history
+          PUBLISH_DIR: ./reports/spark
 
-      - name: Post the Allure link in the commit status
-        if: always()
-        uses: Sibz/github-status-action@v1
-        with:
-          authToken: ${{secrets.GITHUB_TOKEN}}
-          context: 'Allure Reports'
-          description: 'Pulsa "Details" para acceder al reporte'
-          state: 'success'
-          sha: ${{github.event.pull_request.head.sha || github.sha}}
-          target_url: https://mkosakovskyy.github.io/poc_prisa/${{github.run_number}}
