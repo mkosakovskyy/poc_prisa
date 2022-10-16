@@ -1,10 +1,5 @@
 package com.prisa.poc.utils;
 
-import io.qameta.allure.Attachment;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-
 public class Flags {
 
     /** Variables */
@@ -30,9 +25,4 @@ public class Flags {
     }
 
     public String getBrowser() { return this.browser; }
-
-    @Attachment(value = "Page screenshot", type = "image/png")
-    public static byte[] saveScreenPng(WebDriver driver){
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-    }
 }

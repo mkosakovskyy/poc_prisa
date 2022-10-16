@@ -1,6 +1,4 @@
 @as.com
-
-@epic=regression-tests
 @issue=1234
 @tmsLink=4321
 

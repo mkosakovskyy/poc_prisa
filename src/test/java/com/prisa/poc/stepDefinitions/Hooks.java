@@ -3,9 +3,11 @@ package com.prisa.poc.stepDefinitions;
 import com.prisa.poc.pages.PagesFactory;
 import com.prisa.poc.utils.Flags;
 import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Attachment;
 import org.apache.commons.lang.StringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -66,11 +68,16 @@ public class Hooks {
             //final byte[] screenByte = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
             //scenario.attach(screenByte, "image/png", scenario.getName());
 
-            Flags.saveScreenPng(driver);
         } catch (WebDriverException somePlatformsDontSupportScreenshots) {
             System.err.println(somePlatformsDontSupportScreenshots.getMessage());
         }
         driver.quit();
+    }
+
+    @AfterStep
+    @Attachment(value = "Page screenshot", type = "image/png")
+    public byte[] saveScreenPng(){
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 
     /** @AfterStep
