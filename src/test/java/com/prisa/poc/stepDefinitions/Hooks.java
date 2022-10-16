@@ -3,12 +3,9 @@ package com.prisa.poc.stepDefinitions;
 import com.prisa.poc.pages.PagesFactory;
 import com.prisa.poc.utils.Flags;
 import io.cucumber.java.After;
-import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import io.qameta.allure.Allure;
-import io.qameta.allure.Attachment;
 import org.apache.commons.lang.StringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,8 +15,6 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.safari.SafariDriver;
-
-import java.io.ByteArrayInputStream;
 import java.util.concurrent.TimeUnit;
 
 public class Hooks {
@@ -68,9 +63,8 @@ public class Hooks {
     @After
     public void tearDown(Scenario scenario) {
         try {
-            //final byte[] screenByte = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            //scenario.attach(screenByte, "image/png", scenario.getName());
-            Allure.addAttachment("Page screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+            final byte[] screenByte = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenByte, "image/png", scenario.getName());
         } catch (WebDriverException somePlatformsDontSupportScreenshots) {
             System.err.println(somePlatformsDontSupportScreenshots.getMessage());
         }
