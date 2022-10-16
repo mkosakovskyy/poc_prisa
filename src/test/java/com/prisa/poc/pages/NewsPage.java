@@ -1,11 +1,11 @@
 package com.prisa.poc.pages;
 
+import com.prisa.poc.locators.NewsLocators;
 import io.cucumber.datatable.DataTable;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,17 +15,9 @@ import java.time.Duration;
 @Slf4j
 public class NewsPage extends AbstractPage {
 
-    /** Locators */
-
     public static final String ATLETICO_URL = "https://as.com/noticias/atletico-madrid/?omnil=mpal";
     public static final String FORMULA_URL = "https://as.com/motor/formula_1/?omnil=mpal";
     public static final String FACEBOOK_URL = "https://www.facebook.com/";
-
-    @FindBy(xpath = "//div[@dtm-region='tag_es_home>atletico-madrid-a_contenedornoticia_1_none_none']")
-    private WebElement eFirstNews;
-
-    @FindBy(xpath = "//a[@name='Navegar a facebook']")
-    private WebElement btnFacebook;
 
     /** Constructor */
 
@@ -36,14 +28,14 @@ public class NewsPage extends AbstractPage {
 
     /** Actions */
 
-    public boolean areNewsDisplayed() { return isElementPresent(eFirstNews); }
+    public boolean areNewsDisplayed() { return isElementPresent(NewsLocators.eFirstNews); }
 
-    public void clickFacebook() { btnFacebook.click(); }
+    public void clickFacebook() { NewsLocators.btnFacebook.click(); }
 
     public void waitForAdvertisements() {
         try {
-            WebElement elem = getDriver().findElement(By.id("gtp_diarioas_19753-MPU1"));
-            new WebDriverWait(getDriver(), Duration.ofSeconds(25)).until(ExpectedConditions.visibilityOf(elem));
+            WebElement elem = getDriver().findElement(By.id("pbnetVideo"));
+            new WebDriverWait(getDriver(), Duration.ofSeconds(35)).until(ExpectedConditions.visibilityOf(elem));
         } catch (NoSuchElementException e) {}
     }
 

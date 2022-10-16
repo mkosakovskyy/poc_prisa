@@ -27,7 +27,7 @@ public class DiarioAsSteps {
 
     @Given("The user is on the as.com home page")
     public void theUserIsOnTheLoginPage() {
-        homePage.navigateTo("https://as.com/?nrd=1");
+        homePage.navigateTo(HomePage.PAGE_URL);
     }
 
     @And("The user accepts cookies pop-up")
@@ -42,7 +42,7 @@ public class DiarioAsSteps {
     @Then("The Atletico de Madrid team page is correct")
     public void theAtleticoPageIsCorrect() {
         pf.waitForPageLoad();
-        Assert.assertEquals("El usuario no se encuentra en la página de noticias del Atletico de Madrid", "https://as.com/noticias/atletico-madrid/?omnil=mpal", pf.getUrl());
+        Assert.assertEquals("El usuario no se encuentra en la página de noticias del Atletico de Madrid", NewsPage.ATLETICO_URL, pf.getUrl());
     }
 
     @And("The Atletico de Madrid news are displayed")
@@ -60,7 +60,7 @@ public class DiarioAsSteps {
         // Redirecciona a Latino US
         pf.waitForPageLoad();
         homePage.redirectSpain();
-        Assert.assertEquals("El usuario no se encuentra en la página de inicio", "https://as.com/?nrd=1", pf.getUrl());
+        Assert.assertEquals("El usuario no se encuentra en la página de inicio", HomePage.PAGE_URL, pf.getUrl());
     }
 
     @When("The user clicks on the title of the first news")
@@ -79,7 +79,7 @@ public class DiarioAsSteps {
     @Then("The Facebook share window is displayed")
     public void theFacebookShareWindowIsDisplayed() {
         newsPage.switchWindow();
-        Assert.assertTrue("El usuario no se encuentra en la ventana de Facebook", pf.getUrl().contains("https://www.facebook.com/"));
+        Assert.assertTrue("El usuario no se encuentra en la ventana de Facebook", pf.getUrl().contains(NewsPage.FACEBOOK_URL));
     }
 
     @When("The user access Formula One within the Motor section")
@@ -87,9 +87,8 @@ public class DiarioAsSteps {
 
     @Then("The Formula One league page is correct")
     public void theFormulaLeaguePageIsCorrect() {
-        // pf.waitForPageLoad();
-        // newsPage.waitForAdvertisements();
-        Assert.assertEquals("El usuario no se encuentra en la página de noticias de la Formula Uno", "https://as.com/motor/formula_1/?omnil=mpal", pf.getUrl());
+        newsPage.waitForAdvertisements();
+        Assert.assertEquals("El usuario no se encuentra en la página de noticias de la Formula Uno", NewsPage.FORMULA_URL, pf.getUrl());
     }
 
     @And("The Formula One league advertisement elements are displayed")

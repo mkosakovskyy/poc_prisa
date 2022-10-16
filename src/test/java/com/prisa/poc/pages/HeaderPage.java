@@ -1,28 +1,10 @@
 package com.prisa.poc.pages;
 
+import com.prisa.poc.locators.HeaderLocators;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class HeaderPage extends AbstractPage {
-
-    /** Locators */
-
-    @FindBy(xpath = "//span[@class='ai-as']")
-    private WebElement logoAS;
-
-    @FindBy(xpath = "//a[@data-subnav='futbol']")
-    private WebElement dropdownFutbol;
-
-    @FindBy(xpath = "//a[@data-subnav='motor']")
-    private WebElement dropdownMotor;
-
-    @FindBy(xpath = "//li/a[@title='Atlético de Madrid']")
-    private WebElement optionAtletico;
-
-    @FindBy(xpath = "//li/a[@title='Fórmula 1']")
-    private WebElement optionFormulaOne;
 
     /** Constructor */
 
@@ -34,16 +16,16 @@ public class HeaderPage extends AbstractPage {
     /** Actions */
 
     public void clickMenuAtletico() {
-        moveTo(dropdownFutbol);
-        optionAtletico.click();
+        moveTo(HeaderLocators.dropdownFutbol);
+        HeaderLocators.optionAtletico.click();
     }
 
     public void clickMenuFormulaOne() {
-        moveTo(dropdownMotor);
-        optionFormulaOne.click();
+        moveTo(HeaderLocators.dropdownMotor);
+        HeaderLocators.optionFormulaOne.click();
     }
 
     public void clickHeaderLogo() {
-        logoAS.click();
+        HeaderLocators.logoAS.click();
     }
 }
