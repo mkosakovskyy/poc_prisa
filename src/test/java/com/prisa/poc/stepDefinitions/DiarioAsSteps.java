@@ -60,7 +60,7 @@ public class DiarioAsSteps {
         // Redirecciona a Latino US
         pf.waitForPageLoad();
         homePage.redirectSpain();
-        // Assert.assertEquals("El usuario no se encuentra en la página de inicio", "https://as.com/?nrd=1", pf.getUrl());
+        Assert.assertEquals("El usuario no se encuentra en la página de inicio", "https://as.com/?nrd=1", pf.getUrl());
     }
 
     @When("The user clicks on the title of the first news")
