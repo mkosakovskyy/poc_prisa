@@ -63,8 +63,10 @@ public class Hooks {
     @After
     public void tearDown(Scenario scenario) {
         try {
-            final byte[] screenByte = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenByte, "image/png", scenario.getName());
+            //final byte[] screenByte = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            //scenario.attach(screenByte, "image/png", scenario.getName());
+
+            Flags.saveScreenPng(driver);
         } catch (WebDriverException somePlatformsDontSupportScreenshots) {
             System.err.println(somePlatformsDontSupportScreenshots.getMessage());
         }
