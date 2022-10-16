@@ -18,19 +18,21 @@ public class NewsPage extends AbstractPage {
     public static final String ATLETICO_URL = "https://as.com/noticias/atletico-madrid/?omnil=mpal";
     public static final String FORMULA_URL = "https://as.com/motor/formula_1/?omnil=mpal";
     public static final String FACEBOOK_URL = "https://www.facebook.com/";
+    NewsLocators newsLoc;
 
     /** Constructor */
 
     NewsPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
+        this.newsLoc = new NewsLocators();
+        PageFactory.initElements(driver, newsLoc);
     }
 
     /** Actions */
 
-    public boolean areNewsDisplayed() { return isElementPresent(NewsLocators.eFirstNews); }
+    public boolean areNewsDisplayed() { return isElementPresent(newsLoc.eFirstNews); }
 
-    public void clickFacebook() { NewsLocators.btnFacebook.click(); }
+    public void clickFacebook() { newsLoc.btnFacebook.click(); }
 
     public void waitForAdvertisements() {
         try {

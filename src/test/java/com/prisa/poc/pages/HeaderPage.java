@@ -6,26 +6,29 @@ import org.openqa.selenium.support.PageFactory;
 
 public class HeaderPage extends AbstractPage {
 
+    HeaderLocators headerLoc;
+
     /** Constructor */
 
     HeaderPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
+        this.headerLoc = new HeaderLocators();
+        PageFactory.initElements(driver, headerLoc);
     }
 
     /** Actions */
 
     public void clickMenuAtletico() {
-        moveTo(HeaderLocators.dropdownFutbol);
-        HeaderLocators.optionAtletico.click();
+        moveTo(headerLoc.dropdownFutbol);
+        headerLoc.optionAtletico.click();
     }
 
     public void clickMenuFormulaOne() {
-        moveTo(HeaderLocators.dropdownMotor);
-        HeaderLocators.optionFormulaOne.click();
+        moveTo(headerLoc.dropdownMotor);
+        headerLoc.optionFormulaOne.click();
     }
 
     public void clickHeaderLogo() {
-        HeaderLocators.logoAS.click();
+        headerLoc.logoAS.click();
     }
 }

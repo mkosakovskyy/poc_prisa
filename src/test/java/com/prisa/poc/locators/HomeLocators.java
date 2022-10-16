@@ -7,9 +7,12 @@ public class HomeLocators {
 
     /** Locators */
 
+    @FindBy(xpath = "//span[@class='ai-as']")
+    public WebElement logoAS;
+
     @FindBy(id = "didomi-notice-agree-button")
-    public static WebElement btnAcceptCookies;
+    public WebElement btnAcceptCookies;
 
     @FindBy(css = "article h2.s__tl a")
-    public static WebElement titleFirstNews;
+    public WebElement titleFirstNews;
 }
