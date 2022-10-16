@@ -7,6 +7,7 @@ import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import org.apache.commons.lang.StringUtils;
 import org.openqa.selenium.*;
@@ -17,6 +18,8 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.safari.SafariDriver;
+
+import java.io.ByteArrayInputStream;
 import java.util.concurrent.TimeUnit;
 
 public class Hooks {
@@ -67,17 +70,11 @@ public class Hooks {
         try {
             //final byte[] screenByte = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
             //scenario.attach(screenByte, "image/png", scenario.getName());
-
+            Allure.addAttachment("Page screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         } catch (WebDriverException somePlatformsDontSupportScreenshots) {
             System.err.println(somePlatformsDontSupportScreenshots.getMessage());
         }
         driver.quit();
-    }
-
-    @AfterStep
-    @Attachment(value = "Page screenshot", type = "image/png")
-    public byte[] saveScreenPng(){
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 
     /** @AfterStep
