@@ -1,0 +1,5 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"broken","Sun Oct 16 01:22:46 GMT 2022","Sun Oct 16 01:23:20 GMT 2022","34384","","Feature - Diario AS proof of concept for Prisa","","Scenario - Share news with Facebook","","Scenario - Share news with Facebook",""
+"passed","Sun Oct 16 01:23:20 GMT 2022","Sun Oct 16 01:23:45 GMT 2022","25072","","Feature - Diario AS proof of concept for Prisa","","Scenario - Access to motor league news","","Scenario - Access to motor league news",""
+"passed","Sun Oct 16 01:21:23 GMT 2022","Sun Oct 16 01:22:08 GMT 2022","44882","","Feature - Diario AS proof of concept for Prisa","","Scenario - Access to a football team news","","Scenario - Access to a football team news",""
+"passed","Sun Oct 16 01:22:08 GMT 2022","Sun Oct 16 01:22:46 GMT 2022","37563","","Feature - Diario AS proof of concept for Prisa","","Scenario - Return to home from a football page","","Scenario - Return to home from a football page",""
