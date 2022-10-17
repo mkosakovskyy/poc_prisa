@@ -1,6 +1,16 @@
 name: Selenium - POC de Prisa
 
-on: [push]
+on:
+  workflow_dispatch:
+    inputs:
+      browser:
+        type: choice
+        description: Elije el navegador
+        required: true
+        options:
+          - chrome
+          - firefox (not working)
+          - edge (not working)
 
 jobs:
   Chrome:
@@ -15,7 +25,7 @@ jobs:
           cache: maven
 
       - name: Run Selenium with Maven
-        run: mvn -B package --file pom.xml -Dbrowser=chrome
+        run: mvn -B package --file pom.xml -Dbrowser=${{ github.event.inputs.browser }}
 
       - name: Generate artifact for ExtentReports PDF
         uses: actions/upload-artifact@v2
